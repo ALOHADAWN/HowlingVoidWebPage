@@ -1,99 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HOWLING VOID // TRUST CHECKER</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="syndicate-terminal">
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="syndicate-terminal">
     <div class="scanlines"></div>
-    
+
     <!-- Переключатель языка -->
     <div class="language-switcher">
-        <div class="lang-label">>> TRANSLATION PROTOCOL:</div>
-        <div class="lang-buttons">
-            <button id="lang-ru" class="lang-btn pan-slavic active" data-lang="ru">
-                <span class="lang-name">PAN-SLAVIC</span>
-            </button>
-            <span class="lang-separator">|</span>
-            <button id="lang-en" class="lang-btn solfed" data-lang="en">
-                <span class="lang-name">SOLFED</span>
-            </button>
-        </div>
+      <div class="lang-label">>> TRANSLATION PROTOCOL:</div>
+      <div class="lang-buttons">
+        <button id="lang-ru" class="lang-btn pan-slavic active" data-lang="ru">
+          <span class="lang-name">PAN-SLAVIC</span>
+        </button>
+        <span class="lang-separator">|</span>
+        <button id="lang-en" class="lang-btn solfed" data-lang="en">
+          <span class="lang-name">SOLFED</span>
+        </button>
+      </div>
     </div>
-    
+
     <header class="terminal-header">
-        <pre id="terminal-header"></pre>
+      <pre id="terminal-header"></pre>
     </header>
 
     <main class="terminal-body">
-        <!-- Системные сообщения -->
-        <div id="system-log" class="system-log"></div>
-        
-        <!-- Индекс доверия -->
-        <div class="trust-display" id="trust-display">
-            >> <span class="trust-label" data-ru="ТЕКУЩИЙ ИНДЕКС ДОВЕРИЯ" data-en="CURRENT TRUST INDEX"></span>: 
-            <span id="trust-value" class="trust-value">0.00</span> 
-            // <span class="trust-label" data-ru="КАТЕГОРИЯ" data-en="DESIGNATION"></span>: 
-            <span id="trust-level" class="trust-level">"<span data-ru="ВЫЧИСЛЯЕТСЯ..." data-en="CALCULATING...">ВЫЧИСЛЯЕТСЯ...</span>"</span>
+      <!-- Системные сообщения -->
+      <div id="system-log" class="system-log"></div>
+
+      <!-- Индекс доверия -->
+      <div class="trust-display" id="trust-display">
+        >>
+        <span
+          class="trust-label"
+          data-ru="ТЕКУЩИЙ ИНДЕКС ДОВЕРИЯ"
+          data-en="CURRENT TRUST INDEX"
+        ></span
+        >:
+        <span id="trust-value" class="trust-value">0.00</span>
+        //
+        <span
+          class="trust-label"
+          data-ru="КАТЕГОРИЯ"
+          data-en="DESIGNATION"
+        ></span
+        >:
+        <span id="trust-level" class="trust-level"
+          >"<span data-ru="ВЫЧИСЛЯЕТСЯ..." data-en="CALCULATING..."
+            >ВЫЧИСЛЯЕТСЯ...</span
+          >"</span
+        >
+      </div>
+
+      <br />
+
+      <!-- Главное меню -->
+      <div id="main-menu" class="menu">
+        <p class="menu-title" data-ru="ГЛАВНОЕ МЕНЮ:" data-en="MAIN MENU:">
+          ГЛАВНОЕ МЕНЮ:
+        </p>
+
+        <div class="menu-item" data-selection="1">
+          <span
+            data-ru="[1] ДОСТУП К ДОСЬЕ ПРОТОКОЛОВ ОБЕЩАНИЙ"
+            data-en="[1] ACCESS LOYALTY PROTOCOL PROMISES"
+          ></span>
         </div>
-        
-        <br>
-        
-        <!-- Главное меню -->
-        <div id="main-menu" class="menu">
-            <p class="menu-title" data-ru="ГЛАВНОЕ МЕНЮ:" data-en="MAIN MENU:">ГЛАВНОЕ МЕНЮ:</p>
-            
-            <div class="menu-item" data-selection="1">
-                <span data-ru="[1] ДОСТУП К ДОСЬЕ ПРОТОКОЛОВ ОБЕЩАНИЙ" 
-                      data-en="[1] ACCESS LOYALTY PROTOCOL PROMISES"></span>
-            </div>
-            
-            <div class="menu-item" data-selection="2">
-                <span data-ru="[2] ПРОСМОТР ПРИКАЗОВ И ИСПОЛНЕНИЯ" 
-                      data-en="[2] REVIEW DIRECTIVES & COMPLIANCE"></span>
-            </div>
-            
-            <div class="menu-item" data-selection="3">
-                <span data-ru="[3] ИНИЦИИРОВАТЬ ПЕРЕОЦЕНКУ ДОВЕРИЯ" 
-                      data-en="[3] INITIATE TRUST RE-EVALUATION SCAN"></span>
-            </div>
-            
-            <div class="menu-item" data-selection="4">
-                <span data-ru="[4] ВИКИ(В РАЗРАБОТКЕ)" 
-                      data-en="[4] WIKI WIP"></span>
-            </div>
-            
-            <div class="menu-item" data-selection="5">
-                <span data-ru="[5] ЭКСПОРТИРОВАТЬ ДОСЬЕ (БЭКАП)" 
-                      data-en="[5] EXPORT DOSSIER (BACKUP)"></span>
-            </div>
-            <div class="menu-item external" data-selection="6">
-                <span 
-                    data-ru="[6] ВНЕШНИЙ КАНАЛ СВЯЗИ // DISCORD"
-                    data-en="[6] EXTERNAL COMMUNICATION CHANNEL // DISCORD">
-                </span>
-            </div>
-            <div class="menu-item danger" data-selection="9">
-                <span data-ru="[9] ЭКСТРЕННОЕ УНИЧТОЖЕНИЕ ДАННЫХ (ТОЛЬКО В КРИТСИТУАЦИЯХ)" 
-                      data-en="[9] EMERGENCY DATA PURGE (CRITICAL SITUATIONS ONLY)"></span>
-            </div>
-            
-            <br>
-            <div class="menu-prompt">
-                <span data-ru=">> ВВЕДИТЕ ВЫБОР" data-en=">> INPUT SELECTION"></span>: 
-                <span class="blinking-cursor">_</span>
-            </div>
+
+        <div class="menu-item" data-selection="2">
+          <span
+            data-ru="[2] ПРОСМОТР ПРИКАЗОВ И ИСПОЛНЕНИЯ"
+            data-en="[2] REVIEW DIRECTIVES & COMPLIANCE"
+          ></span>
         </div>
-        
-        <!-- Область для контента -->
-        <div id="content-area" class="content-area"></div>
+
+        <div class="menu-item" data-selection="3">
+          <span
+            data-ru="[3] ИНИЦИИРОВАТЬ ПЕРЕОЦЕНКУ ДОВЕРИЯ"
+            data-en="[3] INITIATE TRUST RE-EVALUATION SCAN"
+          ></span>
+        </div>
+
+        <div class="menu-item" data-selection="4">
+          <span data-ru="[4] ВИКИ(В РАЗРАБОТКЕ)" data-en="[4] WIKI WIP"></span>
+        </div>
+
+        <div class="menu-item" data-selection="5">
+          <span
+            data-ru="[5] ЭКСПОРТИРОВАТЬ ДОСЬЕ (БЭКАП)"
+            data-en="[5] EXPORT DOSSIER (BACKUP)"
+          ></span>
+        </div>
+        <div class="menu-item external" data-selection="6">
+          <span
+            data-ru="[6] ВНЕШНИЙ КАНАЛ СВЯЗИ // DISCORD"
+            data-en="[6] EXTERNAL COMMUNICATION CHANNEL // DISCORD"
+          >
+          </span>
+        </div>
+        <div class="menu-item" data-selection="7">
+          <span
+            data-ru="[7] ПРАВИЛА HOWLING VOID"
+            data-en="[7] HOWLING VOID RULES"
+          >
+          </span>
+        </div>
+        <div class="menu-item danger" data-selection="9">
+          <span
+            data-ru="[9] ЭКСТРЕННОЕ УНИЧТОЖЕНИЕ ДАННЫХ (ТОЛЬКО В КРИТСИТУАЦИЯХ)"
+            data-en="[9] EMERGENCY DATA PURGE (CRITICAL SITUATIONS ONLY)"
+          ></span>
+        </div>
+
+        <br />
+        <div class="menu-prompt">
+          <span data-ru=">> ВВЕДИТЕ ВЫБОР" data-en=">> INPUT SELECTION"></span>:
+          <span class="blinking-cursor">_</span>
+        </div>
+      </div>
+
+      <!-- Область для контента -->
+      <div id="content-area" class="content-area"></div>
     </main>
 
     <footer class="terminal-footer">
-        <pre id="footer-text">
+      <pre id="footer-text">
 >> <span data-ru="ПОДКЛЮЧЕНИЕ УСТАНОВЛЕНО. ВСЕ ДЕЙСТВИЯ ПРОТОКОЛИРУЮТСЯ." 
          data-en="CONNECTION ESTABLISHED. ALL ACTIVITIES ARE LOGGED."></span>
 >> <span data-ru="NANOTRASEN КОНТРРАЗВЕДКА: [НЕАКТИВНО]" 
@@ -102,6 +140,5 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
